@@ -5,14 +5,15 @@ session_start(); // Right at the top of your script
 ?>
 <head>
   <title>KeyStore</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <script src="cart.js"></script>
+  <link rel="stylesheet" href="cart.scss">
   <link rel="stylesheet" href="Home.css">
-  <script src="ShoppingCart.js"></script>
-  <link rel="stylesheet" href="Cart.scss">
 </head>
 <body>
 
@@ -36,19 +37,19 @@ session_start(); // Right at the top of your script
       <ul class="nav navbar-nav navbar-right">
       <li class='nav-item'>
   <?php 
-  if($_SESSION['logged']==true)
+  if(isset($_SESSION['logged'])==true)
     { 
-      echo "<a href='Login.php'><span class='glyphicon glyphicon-user'></span>   ",  $_SESSION["username"],"</a></li></ul>";
+      echo "<a href='#'><span class='glyphicon glyphicon-user'></span>   ",  $_SESSION['username'],"</a></li></ul>";
       echo "<ul class='nav navbar-nav navbar-right'><li class='nav-item'><a href='logout.php'>Logout</a></li></ul>";
     }
-  elseif($_SESSION['logged']==false)
+  else
     {
       echo "<a href='Login.php'><span class='glyphicon glyphicon-user'></span> Your Account</a></li></ul>";
     }
   ?>
     
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" id="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart <span class="badge"></span></a></li>
+        <li id="cart"><a href="#" id="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart <span class="badge"></span></a></li>
         
       </ul>
     </div>
@@ -56,6 +57,14 @@ session_start(); // Right at the top of your script
 </nav>
 
 
+<div class="shopping-cart ">
+  <div class="shopping-cart-items">
+    <div class="clearfix">
+        <span class="begin"></span>
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" id="item_added">
+    </div>
+  </div>
+</div> <!--end shopping-cart -->
 
 <div class="jumbotron">
     <div class="container text-center">
@@ -79,34 +88,34 @@ session_start(); // Right at the top of your script
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn" id="item1">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn" id="item2">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
-                  </div>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn" id="item3">Add To Cart</button>
+                    </div>
                   </div>
                 </div><br>
                 
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                        <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
-                  </div>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
                   </div>
                 </div><br>
                 
@@ -118,16 +127,16 @@ session_start(); // Right at the top of your script
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                        <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
+                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                    <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                   </div>
                 </div><br>
@@ -135,16 +144,16 @@ session_start(); // Right at the top of your script
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                        <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
+                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                    <button class="add-to-cart-btn">Add To Cart</button>
                   </div>
                   </div>
                 </div><br>
@@ -157,16 +166,16 @@ session_start(); // Right at the top of your script
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                        <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                      <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
+                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                    <button class="add-to-cart-btn">Add To Cart</button>
                   </div>
                   </div>
                 </div><br>
@@ -174,16 +183,16 @@ session_start(); // Right at the top of your script
                 <div class="item">    
                   <div class="row">
                     <div class="col-sm-3">
-                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                        <button class="btn">Add To Cart</button>
+                        <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                        <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                      <button class="btn">Add To Cart</button>
+                      <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop" >
+                      <button class="add-to-cart-btn">Add To Cart</button>
                     </div>
                     <div class="col-sm-3">
-                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000">
-                    <button class="btn">Add To Cart</button>
+                    <img src="https://s1.gaming-cdn.com/images/products/1866/450x258/thehunter-call-of-the-wild-pc-game-steam-europe-cover.jpg?v=1670418000" class="items-shop">
+                    <button class="add-to-cart-btn">Add To Cart</button>
                   </div>
                   </div>
                 </div><br>

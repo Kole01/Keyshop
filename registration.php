@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Email validation
     $email_test = test_input($_POST["userEmail"]);
 
-    if(empty(($_POST["userEmail"])){
+    if(empty(($_POST["userEmail"]))){
         $email_err = "Please enter an Email.";
     }elseif (!filter_var($email_test, FILTER_VALIDATE_EMAIL)) {
         $email = trim($_POST["userEmail"]);
