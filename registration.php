@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 include "conn.php";
 
 $username = $password = $confirm_password = $email = $fname =$lname = "";
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
 
     //Email validation
-    $email_test = test_input($_POST["userEmail"]);
+    $email_test = $_POST["userEmail"];
 
     if(empty(($_POST["userEmail"]))){
         $email_err = "Please enter an Email.";
@@ -102,9 +102,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "INSERT INTO users (username, userFName, userLName, userEmail, userPassword) VALUES ('$username', '$fname', '$lname','$email', '$password')";
          
         if ($link->query($sql) === TRUE) {
-            echo "successfully registeed";
+                    $_SESSION['registerd']=true;
+                    header("Location: login.php");
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $sql . "<br>" . $link->error;
           }
           
     }

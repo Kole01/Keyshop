@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Please enter a username.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT username, userPassword FROM users";
+        $sql = "SELECT username, userPassword, userRole FROM users";
         $result = $link->query($sql);
         
         if ($result->num_rows > 0){
@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($row["username"] == trim($_POST["username"]) && $row["userPassword"] == trim($_POST["password"])){
                     //$login_counter = 0;
                     $username = trim($_POST["username"]);
+                    $_SESSION["role"] = $row["userRole"];
                     $_SESSION['logged']=true;
                     $_SESSION['username']=$username;
                     header("Location: home.php");
