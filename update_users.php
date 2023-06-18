@@ -4,6 +4,8 @@
 <head>
   <?php
   session_start(); // Right at the top of your script
+  error_reporting(0);
+  ini_set('display_errors', 0);
   ?>
   <?php
   include "conn.php";
@@ -11,6 +13,7 @@
   <title>KeyStore</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="table.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -56,51 +59,90 @@
 
   <h1>User List</h1>
   <ul>
+  <?php
+// Assuming you have a database connection established
+$query = "SELECT * FROM users";
+$result = mysqli_query($link, $query);
+?>
+
+<table style="margin-left:auto;margin-right:auto;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>User Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
     <?php
-    // Assuming you have a database connection established
-    $query = "SELECT * FROM users";
-    $result = mysqli_query($link, $query);
-
+    
     while ($row = mysqli_fetch_assoc($result)) {
-      echo  $row['id'] . "\t\t\t" . $row['username'] . "\t\t\t" . $row['userFName'] . "\t\t\t" . $row['userLName'] . "\t\t\t" . $row['userEmail'] . "\t\t\t" . $row['userRole'] . "\t<button class='editbutton' onclick='editUser(" . $row["id"] . ")'>Edit</button>\t<button class='editbutton' onclick='deleteUser(" . $row["id"] . ")'>Delete</button>";
+      echo "<tr id='user-" . $row['id'] . "'>";
+      echo "<td>" . $row['id'] . "</td>";
+      echo "<td>" . $row['username'] . "</td>";
+      echo "<td>" . $row['userFName'] . "</td>";
+      echo "<td>" . $row['userLName'] . "</td>";
+      echo "<td>" . $row['userEmail'] . "</td>";
+      echo "<td>" . $row['userRole'] . "</td>";
+      echo "<td>";
+      echo "<button class='editbutton' onclick='editUser(" . $row["id"] . ", \"" . $row["userFName"] . "\", \"" . $row["userLName"] . "\", \"" . $row["username"] . "\", \"" . $row["userEmail"] . "\", \"" . $row["userRole"] . "\", \"" . $row["userPassword"] . "\")'>Edit</button>";
+      echo "<form method='POST' onsubmit='return confirm(\"Are you sure you want to delete this user?\")'>";
+      echo "<input type='hidden' name='userId' value='" . $row['id'] . "'>";
+      echo "<input type='submit' class='editbutton' style='margin-left:5px'name='deleteUser' value='Delete'>";
+      echo "</form>";
+      echo "</td>";
+      echo "</tr>";
     }
-
-    // Close the database connection
-    mysqli_close($link);
     ?>
+  </tbody>
+</table>
+
+<?php
+  // Handle the deletion when the form is submitted
+  if (isset($_POST['deleteUser'])) {
+    $userId = $_POST['userId'];
+    $query = "DELETE FROM users WHERE id = $userId";
+    $result = mysqli_query($link, $query);
+  }?>
 
   </ul>
 
   <h1>User Profile</h1>
-
-  <form method="POST">
-    <input type="hidden" id="userId" name="userId">
-    <input type="text" id="userFName" class="" name="userFName" placeholder="First name" required>
-    <input type="text" id="userLName" class="" name="userLName" placeholder="Last name" required>
-    <input type="text" id="username" class="" name="username" placeholder="Username" required>
-    <input type="text" id="userEmail" class="" name="userEmail" placeholder="Email" required>
-    <input type="password" id="userPassword" class="" name="userPassword" placeholder="Password" required>
-    <input type="submit" class="fadeIn second" value="Edit">
-  </form>
+  <div>
+    <div>
+      <?php include "edit_user.php" ?>
+      <form method="POST" id="form">
+        <input type="text" id="userId" name="userId" placeholder="Id" readonly>
+        <input type="text" id="userFName" class="" name="userFName" placeholder="First name" required>
+        <input type="text" id="userLName" class="" name="userLName" placeholder="Last name" required>
+        <input type="text" id="username" class="" name="username" placeholder="Username" required>
+        <input type="text" id="userEmail" class="" name="userEmail" placeholder="Email" required>
+        <select id="userRole" class="" name="userRole" required>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="password" id="userPassword" class="userPassword" name="userPassword" placeholder="Password" required>
+        <input type="submit" class="fadeIn second" value="Edit">
+      </form>
+    </div>
+  </div>
 
   <script>
-    function editUser(userId) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var user = JSON.parse(this.responseText);
-          document.getElementById('userId').value = user.id;
-          document.getElementById('userFName').value = user.userFName;
-          document.getElementById('userLName').value = user.userLName;
-          document.getElementById('username').value = user.username;
-          document.getElementById('userEmail').value = user.userEmail;
-          document.getElementById('userPassword').value = user.userPassword;
-        }
-      };
-      xhttp.open("GET", "get_user.php?id=" + userId, true);
-      xhttp.send();
+    function editUser(id, firstName, lastName, username, email, role, password) {
+      document.getElementById("userId").value = id;
+      document.getElementById("userFName").value = firstName;
+      document.getElementById("userLName").value = lastName;
+      document.getElementById("username").value = username;
+      document.getElementById("userEmail").value = email;
+      document.getElementById("userRole").value = role;
+      document.getElementById("userPassword").value = password;
     }
   </script>
+
 </body>
 
 </html>

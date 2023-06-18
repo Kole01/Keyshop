@@ -18,6 +18,35 @@
   <link rel="stylesheet" href="home.css">
   <script src="cart.js"></script>
   <link rel="stylesheet" href="cart.scss">
+
+
+  <style>
+    .product-title{
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+
+      #Carousel {
+        display: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+
+      #nonCarousel {
+        float: left;
+        display: none;
+      }
+
+    
+
+      #nonCarousel .product-title {
+        float: left;
+        
+      }
+
+    }
+  </style>
 </head>
 
 <body>
@@ -65,7 +94,7 @@
 
 
   <?php include 'cart.php';
-    ?>
+  ?>
 
   <div class="jumbotron">
     <div class="container text-center">
@@ -84,35 +113,34 @@
     <div class="carousel-inner">
       <div class="item active text-center">
         <h2>Action</h2>
-        
-      
+
+
 
 
         <?php
-          $sql = "SELECT id, prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
-          $result = $link->query($sql);
-          $row_counter = 0;
-          $counter = 0;
-          if ($result->num_rows > 0){
-              while($row = $result->fetch_assoc()) {
-                if($row['prodGenre'] == 'Action' && $counter<6){
-                  $row_counter ++;
-                  if ($row_counter==3){
-                    echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
+        $sql = "SELECT id, prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+        $result = $link->query($sql);
+        $row_counter = 0;
+        $counter = 0;
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            if ($row['prodGenre'] == 'Action' && $counter < 6) {
+              $row_counter++;
+              if ($row_counter == 3) {
+                echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
 
-                    $row_counter=0;
-                    $counter++;
-                  }
-                  else{
-                    echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
-                    $counter++;
-                  }
-                }
-                
-                
-
+                $row_counter = 0;
+                $counter++;
+              } else {
+                echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
+                $counter++;
               }
             }
+
+
+
+          }
+        }
         ?>
         <br>
 
@@ -122,29 +150,28 @@
 
 
         <?php
-          $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
-          $result = $link->query($sql);
-          $row_counter = 0;
-          $counter = 0;
-          if ($result->num_rows > 0){
-              while($row = $result->fetch_assoc()) {
-                if($row['prodGenre'] == 'Adventure' && $counter<6){
-                  $row_counter ++;
-                  if ($row_counter==3){
-                    echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
-                    $row_counter=0;
-                    $counter++;
-                  }
-                  else{
-                    echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
-                    $counter++;
-                  }
-                }
-                
-                
-
+        $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+        $result = $link->query($sql);
+        $row_counter = 0;
+        $counter = 0;
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            if ($row['prodGenre'] == 'Adventure' && $counter < 6) {
+              $row_counter++;
+              if ($row_counter == 3) {
+                echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
+                $row_counter = 0;
+                $counter++;
+              } else {
+                echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
+                $counter++;
               }
             }
+
+
+
+          }
+        }
         ?>
         <br>
 
@@ -154,29 +181,28 @@
 
 
         <?php
-          $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
-          $result = $link->query($sql);
-          $row_counter = 0;
-          $counter = 0;
-          if ($result->num_rows > 0){
-              while($row = $result->fetch_assoc()) {
-                if($row['prodGenre'] == 'Strategy' && $counter<6){
-                  $row_counter ++;
-                  if ($row_counter==3){
-                    echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
-                    $row_counter=0;
-                    $counter++;
-                  }
-                  else{
-                    echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
-                    $counter++;
-                  }
-                }
-                
-                
-
+        $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+        $result = $link->query($sql);
+        $row_counter = 0;
+        $counter = 0;
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            if ($row['prodGenre'] == 'Strategy' && $counter < 6) {
+              $row_counter++;
+              if ($row_counter == 3) {
+                echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
+                $row_counter = 0;
+                $counter++;
+              } else {
+                echo "<div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div>";
+                $counter++;
               }
             }
+
+
+
+          }
+        }
         ?>
         <br>
 
@@ -188,7 +214,175 @@
         class="glyphicon glyphicon-triangle-right" aria-hidden="true"></i></a>
   </div>
 
+  <div id="nonCarousel">
+    <div class="">
+      <h2>Action</h2>
 
+
+
+
+      <?php
+      $sql = "SELECT id, prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+      $result = $link->query($sql);
+      $row_counter = 0;
+      $counter = 0;
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          if ($row['prodGenre'] == 'Action' && $counter < 6) {
+            $row_counter++;
+            if ($row_counter == 3) {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $row_counter = 0;
+              $counter++;
+            } else {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $counter++;
+            }
+
+
+          }
+        }
+      }
+      ?>
+      <br>
+
+    </div>
+    <div class="">
+      <h2>Adventure</h2>
+
+
+      <?php
+      $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+      $result = $link->query($sql);
+      $row_counter = 0;
+      $counter = 0;
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          if ($row['prodGenre'] == 'Adventure' && $counter < 6) {
+            $row_counter++;
+            if ($row_counter == 3) {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products center' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $row_counter = 0;
+              $counter++;
+            } else {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $counter++;
+            }
+
+          }
+
+        }
+      }
+      ?>
+      <br>
+
+    </div>
+    <div class="">
+      <h2>Strategy</h2>
+
+
+      <?php
+      $sql = "SELECT id,prodName, prodDesc, prodImg, prodPrice, prodGenre FROM products";
+      $result = $link->query($sql);
+      $row_counter = 0;
+      $counter = 0;
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          if ($row['prodGenre'] == 'Strategy' && $counter < 6) {
+            $row_counter++;
+            if ($row_counter == 3) {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $row_counter = 0;
+              $counter++;
+            } else {
+              echo "
+              <div class='allprod'>
+                <div class='image-container'>
+                  <a href='product_page.php?id=" . $row['id'] . "'>
+                    <img src='" . $row['prodImg'] . "' class=''>
+                  </a>
+                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                </div>
+                <div class='product-info'>
+                  <div class='product-title'>" . $row['prodName'] . "</div>
+                </div>
+              </div>
+            ";              
+            $counter++;
+            }
+          }
+
+
+
+        }
+      }
+      ?>
+      <br>
+
+    </div>
+
+
+  </div>
 
 
 </body>

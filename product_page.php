@@ -23,43 +23,45 @@
 <body>
 
 
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="home.php">Home</a></li>
-                    <li class="nav-item"><a href="all_products.php">Products</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <?php
-                        if (isset($_SESSION['logged']) == true) {
-                            echo "<a href='#'><span class='glyphicon glyphicon-user'></span>   ", $_SESSION['username'], "</a></li></ul>";
-                            echo "<ul class='nav navbar-nav navbar-right'><li class='nav-item'><a href='logout.php'>Logout</a></li></ul>";
-                            if ($_SESSION["role"] == "admin") {
-                                echo "<a href='add_productshtml.php'><button class='add_product' >Add Product</button></a>";
-                                echo "<a href='update_users.php'><button class='add_product' >Edit Users</button></a>";
-                            }
-                        } else {
-                            echo "<a href='Login.php'><span class='glyphicon glyphicon-user'></span> Your Account</a></li></ul>";
-                        }
-                        ?>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="cart"><a href="#" id="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart <span
-                                class="badge"></span></a></li>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="nav-item "><a href="home.php">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><a href="all_products.php" class="">Products</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class='nav-item'>
+            <?php
+            if (isset($_SESSION['logged']) == true) {
+              echo "<a href='#'><span class='glyphicon glyphicon-user'></span>   ", $_SESSION['username'], "</a></li></ul>";
+              echo "<ul class='nav navbar-nav navbar-right'><li class='nav-item'><a href='logout.php'>Logout</a></li></ul>";
+              if ($_SESSION["role"] == "admin") {
+                echo "<a href='add_productshtml.php'><button class='add_product' >Add Product</button></a>";
+                echo "<a href='update_users.php'><button class='add_product' >Edit Users</button></a>";
+              }
+            } else {
+              echo "<a href='Login.php'><span class='glyphicon glyphicon-user'></span> Your Account</a></li></ul>";
+            }
+            ?>
 
-                </ul>
-            </div>
-        </div>
-    </nav>
+            <ul class="nav navbar-nav navbar-right">
+              <li id="cart"><a href="#" id="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart <span
+                    class="badge"></span></a></li>
+
+            </ul>
+      </div>
+    </div>
+  </nav>
 
     <?php include 'cart.php';
     ?>
