@@ -15,15 +15,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   <link rel="stylesheet" href="home.css">
   <script src="cart.js"></script>
   <link rel="stylesheet" href="cart.scss">
 
 
   <style>
-    .product-title{
+    .product-title {
       text-align: left;
     }
+
     @media (max-width: 768px) {
 
       #Carousel {
@@ -38,11 +40,11 @@
         display: none;
       }
 
-    
+
 
       #nonCarousel .product-title {
         float: left;
-        
+
       }
 
     }
@@ -235,32 +237,32 @@
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $row_counter = 0;
+            ";
+              $row_counter = 0;
               $counter++;
             } else {
               echo "
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $counter++;
+            ";
+              $counter++;
             }
 
 
@@ -289,32 +291,32 @@
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products center' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $row_counter = 0;
+            ";
+              $row_counter = 0;
               $counter++;
             } else {
               echo "
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $counter++;
+            ";
+              $counter++;
             }
 
           }
@@ -343,32 +345,32 @@
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $row_counter = 0;
+            ";
+              $row_counter = 0;
               $counter++;
             } else {
               echo "
               <div class='allprod'>
                 <div class='image-container'>
                   <a href='product_page.php?id=" . $row['id'] . "'>
-                    <img src='" . $row['prodImg'] . "' class=''>
+                    <img src='" . $row['prodImg'] . "' class='items-shop-add2'>
                   </a>
-                  <button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
+                  <button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button>
                 </div>
                 <div class='product-info'>
                   <div class='product-title'>" . $row['prodName'] . "</div>
                 </div>
               </div>
-            ";              
-            $counter++;
+            ";
+              $counter++;
             }
           }
 

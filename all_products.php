@@ -16,30 +16,42 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  <link rel="stylesheet" href="home.css">
   <script src="cart.js"></script>
   <link rel="stylesheet" href="cart.scss">
-  <link rel="stylesheet" href="home.css">
   <style>
-    @media (max-width: 767px) {
-      .image-container{
-        text-align: center;
+    @media (max-width: 768px) {
 
-      }
-      .add-to-cart-btn-all-products{
-        margin-top: 17em;
-        margin-left: -8em;
-      }
-        
-      
-      .items-shop-add {
-        border-radius: 10px;
-        margin-left: auto;
-        margin-right: auto;
+      #products {
+        display: none;
       }
 
+      #products2 {
+        display: ;
+      }
       
+      .allprod2{
+        display: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+
+      #products2 {
+        display: none;
+      }
+
+
+
+      #products {
+        display: block;
+      }
+
+
+
     }
   </style>
+
 </head>
 
 <body>
@@ -84,7 +96,7 @@
   </nav>
 
   <?php include 'cart.php';
-    ?>
+  ?>
 
 
   <div class="jumbotron">
@@ -98,14 +110,14 @@
   $results_per_page = 9;
   $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
   $start_index = ($current_page - 1) * $results_per_page;
-  
+
 
   $sort_by = isset($_GET['sort']) ? $_GET['sort'] : 'prodName';
   $sort_order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-  
+
 
   $genre_filter = isset($_GET['genre']) ? $_GET['genre'] : '';
-  
+
 
   $sql_count = "SELECT COUNT(*) AS total FROM products";
   if ($genre_filter != '') {
@@ -114,7 +126,7 @@
   $count_result = $link->query($sql_count);
   $total_results = $count_result->fetch_assoc()['total'];
   $total_pages = ceil($total_results / $results_per_page);
-  
+
 
   $sql = "SELECT id, prodName, prodDesc, prodImg, prodPrice FROM products";
   if ($genre_filter != '') {
@@ -125,49 +137,67 @@
   $row_counter = 0;
 
   echo "<div class='text-center'>Sort by: ";
-echo "<a href='all_products.php?page=$current_page&sort=prodName&order=";
-if ($sort_by == 'prodName' && $sort_order == 'ASC') {
-  echo 'DESC';
-} else {
-  echo 'ASC';
-}
-echo "&genre=$genre_filter'>Name</a> | ";
-echo "<a href='all_products.php?page=$current_page&sort=prodPrice&order=";
-if ($sort_by == 'prodPrice' && $sort_order == 'ASC') {
-  echo 'DESC';
-} else {
-  echo 'ASC';
-}
-echo "&genre=$genre_filter'>Price</a>";
-echo "</div>";
-
-
-echo "<div class='text-center'>Filter by Genre: ";
-echo "<select onchange='location = this.value;'>";
-echo "<option value='all_products.php?page=$current_page&sort=$sort_by&order=$sort_order&genre='>All</option>";
-$genres = ["Action", "Adventure", "Strategy"]; 
-foreach ($genres as $genre) {
-  $selected = $genre_filter == $genre ? 'selected' : '';
-  echo "<option value='all_products.php?page=$current_page&sort=$sort_by&order=$sort_order&genre=$genre' $selected>$genre</option>";
-}
-echo "</select>";
-echo "</div>";
-
-echo "<div class='products'>";
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      $row_counter++;
-      if ($row_counter == 3) {
-        echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
-        $row_counter = 0;
-      } else {
-        echo "<div><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn-all-products' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title'>" . $row['prodName'] . "</div></div></div>";
-      }
-    }
+  echo "<a href='all_products.php?page=$current_page&sort=prodName&order=";
+  if ($sort_by == 'prodName' && $sort_order == 'ASC') {
+    echo 'DESC';
+  } else {
+    echo 'ASC';
   }
+  echo "&genre=$genre_filter'>Name</a> | ";
+  echo "<a href='all_products.php?page=$current_page&sort=prodPrice&order=";
+  if ($sort_by == 'prodPrice' && $sort_order == 'ASC') {
+    echo 'DESC';
+  } else {
+    echo 'ASC';
+  }
+  echo "&genre=$genre_filter'>Price</a>";
+  echo "</div>";
 
+
+  echo "<div class='text-center'>Filter by Genre: ";
+  echo "<select onchange='location = this.value;'>";
+  echo "<option value='all_products.php?page=$current_page&sort=$sort_by&order=$sort_order&genre='>All</option>";
+  $genres = ["Action", "Adventure", "Strategy"];
+  foreach ($genres as $genre) {
+    $selected = $genre_filter == $genre ? 'selected' : '';
+    echo "<option value='all_products.php?page=$current_page&sort=$sort_by&order=$sort_order&genre=$genre' $selected>$genre</option>";
+  }
+  echo "</select>";
   echo "</div>";
   ?>
+<br><br><br>
+<div id='products'>
+    <?php
+    $row_counter=1;
+    $result = $link->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        
+        if ($row_counter == 3) {
+          echo "<div class='row'><div class='col-sm-3 allprod2'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title2'><p>" . $row['prodName'] . "</p></div></div></div><br>";
+          $row_counter = 0;
+        } else {
+          echo "<div class='col-sm-3 allprod2'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add'></a><button class='add-to-cart-btn' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title2'><p>" . $row['prodName'] . "</p></div></div></div>";
+        }
+        $row_counter++;
+      }
+    }
+    ?>
+</div>
+
+
+  <div id='products2'>
+    <?php
+    $result = $link->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo "<div class='row'><div class='col-sm-3 allprod'><div class='image-container'><a href='product_page.php?id=" . $row['id'] . "'><img src='" . $row['prodImg'] . "' class='items-shop-add2'></a><button class='primary-button' data-info1='" . $row['prodImg'] . "' data-info2='" . $row['prodName'] . "' data-info3='" . $row['prodPrice'] . "'>Add To Cart</button></div><div class='product-title2' style='margin-left: 23%;'><p>" . $row['prodName'] . "</p></div></div></div>";
+
+      }
+    }
+    ?>
+  </div>
+
 
 
 
